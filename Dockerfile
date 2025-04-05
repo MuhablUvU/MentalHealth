@@ -11,7 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Unzip the model.zip
 RUN apt-get update && apt-get install -y unzip && \
-    unzip mental_health_model.zip -d ./mental_health_model/ && \
+    unzip mental_health_model.zip -d ./ && \
     rm mental_health_model.zip
 
 # Start the app
