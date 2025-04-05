@@ -30,7 +30,7 @@ class PredictionResponse(BaseModel):
 
 # Load model and tokenizer
 try:
-    model = load_model("metnal_health_model/metnal_health_model.h5")
+    model = load_model("metnal_health_model.h5")
     with open('tokenizer.pickle', 'rb') as handle:
         tokenizer = pickle.load(handle)
     print("✅ Model and tokenizer loaded successfully")
