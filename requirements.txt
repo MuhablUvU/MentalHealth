@@ -1,7 +1,15 @@
 fastapi
 uvicorn
 tensorflow
+<<<<<<< HEAD
 pydantic
 requests
 gdown
 python-multipart
+=======
+h5py
+pyyaml
+pydantic
+requests
+keras
+>>>>>>> 48bfe4cd4937236f55045873e1b75afadc250516

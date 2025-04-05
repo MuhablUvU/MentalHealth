@@ -6,10 +6,15 @@ import tensorflow as tf
 import numpy as np
 import pickle
 import re
+<<<<<<< HEAD
 import requests
 from typing import List
 import os
 
+=======
+import os
+from typing import List
+>>>>>>> 48bfe4cd4937236f55045873e1b75afadc250516
 # Initialize FastAPI app
 app = FastAPI(
     title="Mental Health Prediction API",
