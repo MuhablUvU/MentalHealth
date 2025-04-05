@@ -15,14 +15,15 @@ from typing import List
 ZIP_PATH = "mental_health_model.zip"
 MODEL_PATH = "mental_health_model.h5"
 
-# Step 1: Extract model if not already extracted
 def extract_model():
     if not os.path.exists(MODEL_PATH):
         print("📦 Extracting model.zip...")
         with zipfile.ZipFile(ZIP_PATH, 'r') as zip_ref:
             zip_ref.extractall()
         print("✅ Model extracted!")
-extract_model()
+    else:
+        print("✅ Model already extracted.")
+
 
 # Initialize FastAPI app
 app = FastAPI(
