@@ -10,7 +10,14 @@ import gdown
 import zipfile
 from typing import List
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # 0 = all logs, 1 = info, 2 = warnings, 3 = errors
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '0'  # 0 = all logs, 1 = info, 2 = warnings, 3 = errors
+
+print("✅ Checking model exists:", os.path.exists("mental_health_model.h5"))
+if os.path.exists("mental_health_model.h5"):
+    print("📦 Model size:", os.path.getsize("mental_health_model.h5"), "bytes")
+else:
+    print("🚨 Model file not found!")
+
 MODEL_PATH = "mental_health_model.h5"
 MODEL_URL = "https://drive.google.com/uc?export=download&id=1yvzO3aHtGmWn646d7XuBAjlgFl7ejz_8"  
 
