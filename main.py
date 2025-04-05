@@ -7,6 +7,7 @@ import numpy as np
 import pickle
 import re
 import requests
+import os
 from typing import List
 
 # Initialize FastAPI app
