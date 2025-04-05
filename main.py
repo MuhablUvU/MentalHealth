@@ -6,7 +6,7 @@ import tensorflow as tf
 import numpy as np
 import pickle
 import re
-import requests
+import gdown
 import zipfile
 from typing import List
 import os
@@ -16,12 +16,9 @@ MODEL_URL = "https://drive.google.com/uc?export=download&id=1yvzO3aHtGmWn646d7Xu
 
 def download_model():
     if not os.path.exists(MODEL_PATH):
-        print("Downloading model...")
-        r = requests.get(MODEL_URL, stream=True)
-        with open(MODEL_PATH, 'wb') as f:
-            for chunk in r.iter_content(chunk_size=8192):
-                f.write(chunk)
-        print("Model downloaded.")
+        print("⬇️ Downloading model...")
+        gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
+        print("✅ Model downloaded.")
 
 # Initialize FastAPI app
 app = FastAPI(
