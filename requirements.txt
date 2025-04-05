@@ -4,3 +4,4 @@ numpy
 tensorflow
 h5py
 pydantic
+requests
