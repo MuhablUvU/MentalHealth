@@ -1,7 +1,7 @@
 fastapi
 uvicorn
-numpy
 tensorflow
-h5py
 pydantic
 requests
+gdown
+python-multipart
