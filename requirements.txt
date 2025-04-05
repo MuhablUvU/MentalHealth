@@ -4,3 +4,4 @@ tensorflow
 pydantic
 requests
 gdown
+python-multipart
