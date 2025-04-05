@@ -10,7 +10,7 @@ import requests
 import zipfile
 from typing import List
 import os
-
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # 0 = all logs, 1 = info, 2 = warnings, 3 = errors
 MODEL_PATH = "mental_health_model.h5"
 MODEL_URL = "https://drive.google.com/uc?export=download&id=1yvzO3aHtGmWn646d7XuBAjlgFl7ejz_8"  
 
