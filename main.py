@@ -6,10 +6,18 @@ import tensorflow as tf
 import numpy as np
 import pickle
 import re
+from typing import List
 import gdown
 import zipfile
-from typing import List
 import os
+
+# Initialize FastAPI app
+app = FastAPI(
+    title="Mental Health Prediction API",
+    description="API for predicting mental health conditions from text",
+    version="1.0.0"
+)
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '0'  # 0 = all logs, 1 = info, 2 = warnings, 3 = errors
 
 print("✅ Checking model exists:", os.path.exists("mental_health_model.h5"))
@@ -26,14 +34,6 @@ def download_model():
         print("⬇️ Downloading model...")
         gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
         print("✅ Model downloaded.")
-
-# Initialize FastAPI app
-app = FastAPI(
-    title="Mental Health Prediction API",
-    description="API for predicting mental health conditions from text",
-    version="1.0.0"
-)
-
 # Define request model
 class PredictionRequest(BaseModel):
     text: str
@@ -46,8 +46,6 @@ class PredictionResponse(BaseModel):
 
 # Load model and tokenizer
 try:
-    # First extract the model if needed
-    download_model()
     model = load_model(MODEL_PATH)
     with open('tokenizer.pickle', 'rb') as handle:
         tokenizer = pickle.load(handle)
