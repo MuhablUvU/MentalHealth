@@ -6,12 +6,13 @@ import tensorflow as tf
 import numpy as np
 import pickle
 import re
-import os
 import requests
 import zipfile
 from typing import List
-
-
+import os
+# Suppress TensorFlow info and warning messages
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or '2' for less suppression
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'  # Disable GPU detection entirely
 ZIP_PATH = "mental_health_model.zip"
 MODEL_PATH = "mental_health_model.h5"
 
