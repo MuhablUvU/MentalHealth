@@ -6,10 +6,24 @@ import tensorflow as tf
 import numpy as np
 import pickle
 import re
-from typing import List
-import gdown
-import zipfile
 import os
+import requests
+import zipfile
+from typing import List
+
+
+ZIP_PATH = "mental_health_model.zip"
+MODEL_PATH = "mental_health_model.h5"
+
+def extract_model():
+    if not os.path.exists(MODEL_PATH):
+        print("📦 Extracting model.zip...")
+        with zipfile.ZipFile(ZIP_PATH, 'r') as zip_ref:
+            zip_ref.extractall()
+        print("✅ Model extracted!")
+    else:
+        print("✅ Model already extracted.")
+
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -18,23 +32,6 @@ app = FastAPI(
     version="1.0.0"
 )
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '0'  # 0 = all logs, 1 = info, 2 = warnings, 3 = errors
-
-MODEL_PATH = "mental_health_model.h5"
-MODEL_URL = "https://drive.google.com/uc?export=download&id=1yvzO3aHtGmWn646d7XuBAjlgFl7ejz_8"  
-
-def download_model():
-    if not os.path.exists(MODEL_PATH):
-        print("⬇️ Downloading model...")
-        gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
-        print("✅ Model downloaded.")
-
-
-print("✅ Checking model exists:", os.path.exists("mental_health_model.h5"))
-if os.path.exists("mental_health_model.h5"):
-    print("📦 Model size:", os.path.getsize("mental_health_model.h5"), "bytes")
-else:
-    print("🚨 Model file not found!")
 # Define request model
 class PredictionRequest(BaseModel):
     text: str
