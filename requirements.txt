@@ -3,5 +3,7 @@ uvicorn
 numpy
 tensorflow
 h5py
+pyyaml
 pydantic
 requests
+keras
