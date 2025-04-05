@@ -1,7 +1,5 @@
+tensorflow
 fastapi
 uvicorn
-numpy
-tensorflow
-h5py
 pydantic
-requests
+numpy
