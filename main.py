@@ -11,20 +11,17 @@ import zipfile
 from typing import List
 import os
 
-ZIP_PATH = "mental_health_model.zip"
 MODEL_PATH = "mental_health_model.h5"
+MODEL_URL = "https://drive.google.com/uc?export=download&id=1yvzO3aHtGmWn646d7XuBAjlgFl7ejz_8"  
 
-def extract_model():
+def download_model():
     if not os.path.exists(MODEL_PATH):
-        if not os.path.exists(ZIP_PATH):
-            raise FileNotFoundError(f"Neither model file ({MODEL_PATH}) nor zip file ({ZIP_PATH}) found")
-            
-        print("📦 Extracting model.zip...")
-        with zipfile.ZipFile(ZIP_PATH, 'r') as zip_ref:
-            zip_ref.extractall()
-        print("✅ Model extracted!")
-    else:
-        print("✅ Model already extracted.")
+        print("Downloading model...")
+        r = requests.get(MODEL_URL, stream=True)
+        with open(MODEL_PATH, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=8192):
+                f.write(chunk)
+        print("Model downloaded.")
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -46,8 +43,7 @@ class PredictionResponse(BaseModel):
 # Load model and tokenizer
 try:
     # First extract the model if needed
-    extract_model()
-    
+    download_model()
     model = load_model(MODEL_PATH)
     with open('tokenizer.pickle', 'rb') as handle:
         tokenizer = pickle.load(handle)
