@@ -11,20 +11,6 @@ import requests
 import zipfile
 from typing import List
 
-
-ZIP_PATH = "mental_health_model.zip"
-MODEL_PATH = "mental_health_model.h5"
-
-def extract_model():
-    if not os.path.exists(MODEL_PATH):
-        print("📦 Extracting model.zip...")
-        with zipfile.ZipFile(ZIP_PATH, 'r') as zip_ref:
-            zip_ref.extractall()
-        print("✅ Model extracted!")
-    else:
-        print("✅ Model already extracted.")
-
-
 # Initialize FastAPI app
 app = FastAPI(
     title="Mental Health Prediction API",
@@ -44,7 +30,7 @@ class PredictionResponse(BaseModel):
 
 # Load model and tokenizer
 try:
-    model = load_model(MODEL_PATH)
+    model = load_model("metnal_health_model/metnal_health_model.h5")
     with open('tokenizer.pickle', 'rb') as handle:
         tokenizer = pickle.load(handle)
     print("✅ Model and tokenizer loaded successfully")
