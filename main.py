@@ -31,7 +31,7 @@ class PredictionResponse(BaseModel):
 
 # Load model and tokenizer
 try:
-    model = load_model("mental_health_model.h5")
+    model = load_model("model.h5")
     with open('tokenizer.pickle', 'rb') as handle:
         tokenizer = pickle.load(handle)
     print("✅ Model and tokenizer loaded successfully")
